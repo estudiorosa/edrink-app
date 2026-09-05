@@ -26,7 +26,7 @@ export function Encabezado() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-noche-borde/70 bg-noche/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5">
         <Marca />
         <div className="flex items-center gap-3">
           <Link

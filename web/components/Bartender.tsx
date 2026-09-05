@@ -193,6 +193,12 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
         </div>
       </section>
 
+      <div className="border-t border-noche-borde py-10 text-center">
+        <Boton variante="lima" tamano="grande" onClick={armar}>
+          {posibles === 0 ? 'Ver lo más parecido' : 'Armar mi trago'}
+        </Boton>
+      </div>
+
       <div ref={resultadosRef} className="scroll-mt-20">
         {resultado ? <Resultados resultado={resultado} prefs={prefs} opciones={opciones} /> : null}
       </div>
