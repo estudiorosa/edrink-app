@@ -136,9 +136,19 @@ export function TarjetaSugerencia({
             </p>
           ) : null}
 
-          {deCasa.length ? (
+          {deCasa.some((c) => c.id === 'hielo') ? (
+            <p className="mt-2 text-sm text-lima">
+              El hielo va incluido: te entregamos tu bolsa de regalo al retirar el pack.
+            </p>
+          ) : null}
+
+          {deCasa.some((c) => c.id !== 'hielo') ? (
             <p className="mt-2 text-sm text-bruma">
-              Lo pones tú: {deCasa.map((c) => c.nombre.toLowerCase()).join(', ')}. Edrink no lo vende suelto.
+              Lo pones tú: {deCasa
+                .filter((c) => c.id !== 'hielo')
+                .map((c) => c.nombre.toLowerCase())
+                .join(', ')}
+              . Edrink no lo vende suelto.
             </p>
           ) : null}
 
