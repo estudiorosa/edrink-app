@@ -142,7 +142,7 @@ function Detalle({ pedido }: { pedido: Pedido }) {
         ))}
         <li className="flex items-center gap-3 bg-lima/5 px-5 py-3">
           <Image
-            src="/assets/badge-hielo-gratis.png"
+            src="/badge-hielo-gratis.png"
             alt="Sello: hielo gratis"
             width={112}
             height={112}

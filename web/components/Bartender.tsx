@@ -70,7 +70,7 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
             Nosotros el cóctel completo.
           </h1>
           <Image
-            src="/assets/badge-hielo-gratis.png"
+            src="/badge-hielo-gratis.png"
             alt="Sello: el hielo corre por nuestra cuenta"
             width={220}
             height={220}
