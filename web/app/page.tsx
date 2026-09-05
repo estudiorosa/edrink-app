@@ -24,7 +24,7 @@ export default function Pagina() {
     },
     {
       titulo: 'Para mezclar',
-      nota: 'bebidas y jugos, con el precio por litro que conviene',
+      nota: 'mixers, tónicas y jugos para cerrar la receta',
       productos: [...porCategoria('bebidas', 7), ...porCategoria('aguas-y-jugos', 5)].map(aligerar),
     },
     {
