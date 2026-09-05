@@ -5,16 +5,28 @@ const botilleria = BOTILLERIAS[0]
 
 const PASOS = [
   {
-    titulo: 'Pides el pack',
-    texto: `El pedido llega directo al panel de ${botilleria.nombre} con tu dirección y el detalle de las botellas.`,
+    titulo: 'Entras por el hielo gratis',
+    texto: 'Llegas a la web con ganas de armar un trago fácil: el gancho es una bolsa de hielo de regalo con cualquier combo.',
   },
   {
-    titulo: 'Suena en el local',
-    texto: 'La botillería lo ve al instante en su panel y tiene 22 segundos para tomarlo antes de que quede sin respuesta.',
+    titulo: 'Armas tu combo',
+    texto: 'Eliges la receta sugerida y ajustas la cantidad de vasos o invitados; el pack se arma con lo que hay en stock hoy.',
   },
   {
-    titulo: 'Si no contesta a tiempo',
-    texto: 'El pedido queda "sin cobertura" y puedes reenviarlo con un clic. Es un canal directo, sin otro local al que redirigirlo.',
+    titulo: 'Revisas la ficha de mesón',
+    texto: 'Ves el desglose del combo, el precio cerrado y la bonificación del hielo confirmada a $0.',
+  },
+  {
+    titulo: 'Vas hasta la tienda',
+    texto: `Caminas o manejas hasta ${botilleria.nombre} con la ficha abierta o guardada en el teléfono.`,
+  },
+  {
+    titulo: 'Compras en el mesón',
+    texto: 'Le muestras la pantalla al dependiente: "quiero este combo con el hielo gratis", y pagas ahí mismo, sin fila ni explicaciones.',
+  },
+  {
+    titulo: 'Preparas en casa',
+    texto: 'Abres la guía de preparación, sigues las proporciones en 3 pasos y sirves al grupo.',
   },
 ]
 
@@ -24,10 +36,10 @@ export function ComoFunciona() {
       <div className="mx-auto max-w-6xl px-5">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr]">
           <div>
-            <h2 className="titular text-grande text-hueso">Cómo llega a tu casa</h2>
+            <h2 className="titular text-grande text-hueso">De la pantalla al mesón, en 6 pasos</h2>
             <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-bruma">
-              Funciona como pedir un auto, pero con un solo conductor: tú pides, se le avisa a {botilleria.nombre} y
-              ella confirma que puede tomarlo.
+              Nada de reparto: arma tu combo con hielo de regalo incluido, camina hasta {botilleria.nombre} y
+              muéstralo en caja. Tú llegas, el botillero ya sabe qué llevarte.
             </p>
 
             <ol className="mt-10 space-y-8">
@@ -58,10 +70,10 @@ export function ComoFunciona() {
           </div>
 
           <div className="border border-noche-borde bg-noche-alto/40 p-6">
-            <h3 className="rotulo text-lg text-hueso">La botillería que despacha</h3>
+            <h3 className="rotulo text-lg text-hueso">La botillería que te recibe</h3>
             <p className="mt-2 text-sm text-bruma">
-              Un solo local en Antofagasta. La distancia se recalcula contra el sector que elijas en el
-              checkout.
+              Un solo local en Antofagasta. Llegas tú directamente al mesón: no hay reparto ni tiempos de espera
+              de por medio.
             </p>
             <div className="mt-5 border-t border-noche-borde pt-4">
               <p className="text-sm text-hueso">{botilleria.nombre}</p>
