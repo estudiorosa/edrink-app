@@ -88,8 +88,8 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
           <p className="max-w-[52ch] text-lg leading-relaxed text-bruma">
-            Cuéntame cómo te gusta tomar o qué tienes dando vueltas en la casa. Armo la receta con lo que hay hoy
-            en la bodega de Edrink y te dejo el pack listo para pedir en Antofagasta.
+            Elige tu cóctel según la ocasión y armamos tu pack completo con stock real de Edrink Antofagasta.
+            Muéstralo en el mesón y llévate el hielo de regalo.
           </p>
 
           <div className="border border-noche-borde bg-noche-alto/60 p-6">
