@@ -65,10 +65,10 @@ body {
   font-style: italic;
 }
 
-/* Jerarquía de encabezados en Montserrat: h1 Bold, h2 Semibold. Van después de .titular/.rotulo
+/* Jerarquía de encabezados en Montserrat: h1 Extra Bold, h2 Semibold. Van después de .titular/.rotulo
    para pisar su peso sin tocar el resto de sus usos (h3, números, etiquetas). */
 .peso-h1 {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .peso-h2 {

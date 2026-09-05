@@ -39,7 +39,9 @@ export function FichaMeson({ id }: { id: string }) {
         <div className="textura-marca mt-8 border-2 border-lima p-6 text-center">
           <p className="rotulo text-sm text-bruma">Muestra esta pantalla en el mesón de</p>
           <p className="titular mt-1 text-2xl text-hueso">{botilleria.nombre}</p>
-          <p className="mt-2 text-sm text-bruma">
+          <p className="numero mt-5 text-5xl text-lima">{pedido.id}</p>
+          <p className="rotulo mt-1 text-xs text-bruma">Código de tu ficha</p>
+          <p className="mt-4 text-sm text-bruma">
             {botilleria.direccion}, {botilleria.sector}. Cierra {botilleria.cierra}.
           </p>
           <a

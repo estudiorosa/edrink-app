@@ -157,7 +157,8 @@ export function TarjetaSugerencia({
             <span className="numero text-3xl text-lima">{clp(total)}</span>
           </div>
           <p className="mt-2 text-sm text-bruma">
-            Se retira en el mesón de Edrink Antofagasta. Con este pack te llevas la bolsa de hielo de regalo.
+            Se retira en el mesón de Edrink Antofagasta con la bolsa de hielo de regalo. Esta tarjeta es solo la
+            vista previa: agrégalo al carro para generar la ficha que hay que mostrar en caja.
           </p>
 
           <Boton variante="lima" tamano="grande" onClick={agregar} className="mt-5 w-full">
