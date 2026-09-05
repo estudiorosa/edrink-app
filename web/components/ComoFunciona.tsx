@@ -4,28 +4,20 @@ const botilleria = BOTILLERIAS[0]
 
 const PASOS = [
   {
-    titulo: 'El hielo corre por nuestra cuenta',
-    texto: 'Entras buscando qué tomar y partes ganando: cada combo viene con una bolsa de hielo de regalo para que llegues directo a servir.',
+    titulo: 'Arma tu cóctel',
+    texto: 'Elige la receta sugerida según tu ocasión y ajusta la cantidad de personas con stock verificado.',
   },
   {
-    titulo: 'Armas tu combo',
-    texto: 'Eliges la receta sugerida y ajustas la cantidad de vasos o invitados; el pack se arma con lo que hay en stock hoy.',
+    titulo: 'Revisa tu Ficha de Mesón',
+    texto: 'Confirma el combo cerrado a precio preferencial y tu bolsa de hielo gratis ($0) lista para retiro.',
   },
   {
-    titulo: 'Revisas la ficha de mesón',
-    texto: 'Ves el desglose del combo, el precio cerrado y la bonificación del hielo confirmada a $0.',
+    titulo: `Pasa por ${botilleria.nombre}`,
+    texto: 'Ve a la botillería con la pantalla activa y muéstrasela directamente al botillero.',
   },
   {
-    titulo: 'Vas hasta la tienda',
-    texto: `Caminas o manejas hasta ${botilleria.nombre} con la ficha abierta o guardada en el teléfono.`,
-  },
-  {
-    titulo: 'Compras en el mesón',
-    texto: 'Le muestras la pantalla al dependiente: "quiero este combo con el hielo gratis", y pagas ahí mismo, sin fila ni explicaciones.',
-  },
-  {
-    titulo: 'Preparas en casa',
-    texto: 'Abres la guía de preparación, sigues las proporciones en 3 pasos y sirves al grupo.',
+    titulo: 'Paga y prepara en casa',
+    texto: 'Te llevas todo en una sola bolsa, sigues la guía en 3 pasos y a brindar.',
   },
 ]
 
@@ -35,10 +27,12 @@ export function ComoFunciona() {
       <div className="mx-auto max-w-6xl px-5">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr]">
           <div>
-            <h2 className="titular peso-h2 text-grande text-hueso">De la pantalla al mesón, en 6 pasos</h2>
+            <h2 className="titular peso-h2 text-grande text-hueso">
+              De tu pantalla al mesón: tu previa lista en segundos
+            </h2>
             <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-bruma">
-              Nada de reparto: arma tu combo con hielo de regalo incluido, camina hasta {botilleria.nombre} y
-              muéstralo en caja. Tú llegas, el botillero ya sabe qué llevarte.
+              Olvídate del reparto y de improvisar recetas. Arma tu pack con hielo de regalo incluido, pasa por{' '}
+              {botilleria.nombre} y muéstralo en caja. Llegas, te pasan la bolsa y listo para el brindis.
             </p>
 
             <ol className="mt-10 space-y-8">
