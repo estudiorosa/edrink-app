@@ -29,12 +29,6 @@ export function Encabezado() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5">
         <Marca />
         <div className="flex items-center gap-3">
-          <Link
-            href="/botilleria"
-            className="hidden text-sm text-bruma transition-colors hover:text-hueso sm:block"
-          >
-            Panel de botillería
-          </Link>
           <button
             type="button"
             onClick={abrirCarro}
