@@ -1,14 +1,21 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { abrirCarro, useCarrito } from '@/lib/carrito'
 import { clp } from '@/lib/formato'
 
-export function Marca({ compacta = false }: { compacta?: boolean }) {
+export function Marca() {
   return (
-    <Link href="/" className="flex items-baseline gap-2">
-      <span className="titular text-2xl text-hueso">EDRINK</span>
-      {compacta ? null : <span className="bajada text-base text-cyan">bartender</span>}
+    <Link href="/" className="flex items-center">
+      <Image
+        src="/logo-edrink.svg"
+        alt="Edrink — Click and brindis"
+        width={220}
+        height={82}
+        priority
+        className="h-8 w-auto sm:h-9"
+      />
     </Link>
   )
 }

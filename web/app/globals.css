@@ -57,13 +57,6 @@ body {
   letter-spacing: 0;
 }
 
-/* Montserrat Medium Italic: el tratamiento de la bajada del logo ("Click and brindis"). */
-.bajada {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-style: italic;
-}
-
 ::selection {
   background: var(--color-lima);
   color: var(--color-noche);

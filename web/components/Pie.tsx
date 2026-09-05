@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Pie({ totalProductos }: { totalProductos: number }) {
@@ -5,9 +6,7 @@ export function Pie({ totalProductos }: { totalProductos: number }) {
     <footer className="textura-marca border-t border-noche-borde py-12">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-[42ch]">
-          <p className="titular text-2xl text-hueso">
-            EDRINK <span className="bajada text-cyan">bartender</span>
-          </p>
+          <Image src="/logo-edrink.svg" alt="Edrink — Click and brindis" width={220} height={82} className="h-9 w-auto" />
           <p className="mt-3 text-sm leading-relaxed text-bruma">
             Demostración construida sobre el catálogo público de edrink.cl: {totalProductos} productos con su
             precio real. No procesa pagos ni envía pedidos a la botillería.
