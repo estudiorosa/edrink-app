@@ -236,10 +236,11 @@ function FormularioEntrega({
           className={campo}
           value={form.nombre}
           onChange={(e) => setForm({ ...form, nombre: e.target.value })}
-          placeholder="Cómo te llama el dependiente"
+          placeholder="Tu nombre"
           autoComplete="name"
         />
       </label>
+      <p className="mt-1.5 text-xs text-bruma">Para personalizar tu ficha de barra</p>
 
       <label className="mt-4 block text-sm text-bruma">
         Teléfono
