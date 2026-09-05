@@ -7,10 +7,9 @@ Fecha: 2026-09-03. Estado: desplegado y verificado en producción.
 
 | | |
 |---|---|
-| Sitio | https://bartenderdelivery.vercel.app |
-| Panel de botillería | https://bartenderdelivery.vercel.app/botilleria |
-| Repositorio | https://github.com/villagran13/bartenderdelivery (privado) |
-| Proyecto Vercel | `villagran13s-projects/bartenderdelivery` |
+| Sitio | https://edrink-app.vercel.app |
+| Panel de botillería | https://edrink-app.vercel.app/botilleria |
+| Repositorio | https://github.com/estudiorosa/edrink-app |
 
 ---
 
