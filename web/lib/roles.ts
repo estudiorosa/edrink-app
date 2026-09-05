@@ -41,6 +41,7 @@ export type RolId =
   | 'vino-dulce'
   | 'espumante'
   | 'cerveza'
+  | 'cerveza-sin-alcohol'
   | 'snack'
 
 export type TipoRol = 'destilado' | 'licor' | 'mixer' | 'jugo' | 'vino' | 'cerveza' | 'acompanamiento'
@@ -104,6 +105,16 @@ export const DEFINICIONES: DefinicionRol[] = [
   { id: 'espumante', nombre: 'Espumante', tipo: 'vino', mlPorTrago: 120, categorias: ['espumantes'] },
 
   { id: 'cerveza', nombre: 'Cerveza', tipo: 'cerveza', mlPorTrago: 350, categorias: ['cervezas-en-lata', 'cervezas-en-botella'] },
+  {
+    id: 'cerveza-sin-alcohol',
+    nombre: 'Cerveza sin alcohol',
+    tipo: 'cerveza',
+    mlPorTrago: 350,
+    categorias: ['cervezas-sin-alcohol'],
+    // La mayoría del catálogo sin alcohol viene en six-packs ("6X355 CC"): el título no dice
+    // el volumen de una unidad suelta, así que se descartan y solo queda la lata individual.
+    excluye: /\dX\d/,
+  },
   { id: 'snack', nombre: 'Algo para picar', tipo: 'acompanamiento', mlPorTrago: 0, categorias: ['snack'] },
 ]
 

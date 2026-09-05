@@ -194,9 +194,11 @@ function LineaProducto({
               .join(' / ')}
           </p>
           <p className="mt-1 text-xs text-bruma">
-            {linea.mlNecesarios > 0
-              ? `Necesitas ${volumen(linea.mlNecesarios)} en total`
-              : 'Una unidad para picar'}
+            {linea.mlNecesarios === 0
+              ? 'Una unidad para picar'
+              : linea.producto.ml
+                ? `Necesitas ${volumen(linea.mlNecesarios)} en total`
+                : 'Viene en una sola unidad, no fraccionable'}
           </p>
           {otras.length ? (
             <button
