@@ -193,7 +193,7 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
         </div>
       </section>
 
-      <div className="border-t border-noche-borde py-10 text-center">
+      <div className="py-10 text-center">
         <Boton variante="lima" tamano="grande" onClick={armar}>
           {posibles === 0 ? 'Ver lo más parecido' : 'Armar mi trago'}
         </Boton>
