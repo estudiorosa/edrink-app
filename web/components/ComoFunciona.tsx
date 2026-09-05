@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { BOTILLERIAS } from '@/lib/botillerias'
 
 const botilleria = BOTILLERIAS[0]
@@ -53,20 +52,6 @@ export function ComoFunciona() {
                 </li>
               ))}
             </ol>
-
-            <div className="mt-10 border border-noche-borde bg-noche-alto/50 p-5">
-              <p className="text-base text-hueso">¿Quieres ver el otro lado del mostrador?</p>
-              <p className="mt-2 text-sm leading-relaxed text-bruma">
-                Abre el panel de botillería en otra pestaña del mismo navegador y toma tú mismo el pedido que
-                acabas de hacer. Es la pantalla que vería el local.
-              </p>
-              <Link
-                href="/botilleria"
-                className="rotulo mt-4 inline-block border border-lima px-5 py-2.5 text-sm text-lima transition-colors hover:bg-lima hover:text-noche"
-              >
-                Abrir el panel de botillería
-              </Link>
-            </div>
           </div>
 
           <div className="border border-noche-borde bg-noche-alto/40 p-6">
