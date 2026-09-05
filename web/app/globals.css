@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-noche: #0a0a0a;
+  --color-noche-alto: #171717;
+  --color-noche-borde: #2a2a2a;
+  --color-tinta: #000000;
+  --color-hueso: #ffffff;
+  --color-bruma: #a3a3a3;
+  --color-lima: #dff75c;
+  --color-lima-hondo: #c3de47;
+  --color-cyan: #10e2ff;
+  --color-magenta: #c400e1;
+  --color-vino: #e23d6b;
+
+  --font-sans: var(--fuente-marca), system-ui, sans-serif;
+
+  --text-titan: clamp(2.3rem, 4.6vw, 3.9rem);
+  --text-titan--line-height: 0.98;
+  --text-grande: clamp(1.7rem, 3vw, 2.45rem);
+  --text-grande--line-height: 1.04;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-noche);
+  color: var(--color-hueso);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Montserrat ExtraBold: el peso de "destacados" del manual de marca, para titulares y hitos. */
+.titular {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.numero {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Montserrat Bold: el peso de "títulos" del manual, para botones y rótulos de sección. */
+.rotulo {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* Montserrat Medium Italic: el tratamiento de la bajada del logo ("Click and brindis"). */
+.bajada {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-style: italic;
+}
+
+::selection {
+  background: var(--color-lima);
+  color: var(--color-noche);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* El radar de despacho es el único movimiento que se inicia solo en la página. */
+@keyframes pulso-radar {
+  0% {
+    transform: scale(0.25);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes latido {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes entrada-carta {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.pulso {
+  animation: pulso-radar 3.2s ease-out infinite;
+}
+
+.latido {
+  animation: latido 1.6s ease-in-out infinite;
+}
+
+.entrada {
+  animation: entrada-carta 0.32s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pulso,
+  .latido,
+  .entrada {
+    animation: none;
+  }
+  .pulso {
+    opacity: 0.2;
+  }
+}
+
+/* Textura de marca: aproximación en degradé del fondo de ladrillo neón (magenta a violeta) del
+   manual — sin el asset de ladrillo real, este wash cumple el mismo rol de "branding nocturno". */
+.textura-marca {
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(196, 0, 225, 0.35), transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(16, 226, 255, 0.14), transparent 50%);
+  background-color: var(--color-tinta);
+}
+
+/* Textura de trama fina: la del papel de la boleta impresa. */
+.trama {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.09) 1px, transparent 0);
+  background-size: 22px 22px;
+}
