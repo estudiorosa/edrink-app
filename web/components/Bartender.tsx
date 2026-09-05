@@ -84,11 +84,8 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
               De {RECETAS.length} recetas cruzadas contra {totalProductos} productos del catálogo de Edrink, con
               precio y stock de hoy.
             </p>
-            <Boton variante="lima" tamano="grande" onClick={armar} className="mt-6 w-full">
-              {posibles === 0 ? 'Ver lo más parecido' : 'Armar mi trago'}
-            </Boton>
             {posibles === 0 ? (
-              <p className="mt-3 text-sm text-lima">
+              <p className="mt-6 text-sm text-lima">
                 Con esa combinación exacta no queda ninguna receta en pie. Quita un sabor o cambia la base, o
                 mira lo más cercano que tengo.
               </p>
