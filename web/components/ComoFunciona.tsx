@@ -4,8 +4,8 @@ const botilleria = BOTILLERIAS[0]
 
 const PASOS = [
   {
-    titulo: 'Entras por el hielo gratis',
-    texto: 'Llegas a la web con ganas de armar un trago fácil: el gancho es una bolsa de hielo de regalo con cualquier combo.',
+    titulo: 'El hielo corre por nuestra cuenta',
+    texto: 'Entras buscando qué tomar y partes ganando: cada combo viene con una bolsa de hielo de regalo para que llegues directo a servir.',
   },
   {
     titulo: 'Armas tu combo',
