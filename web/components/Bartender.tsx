@@ -16,7 +16,7 @@ import type { OpcionesPorRol } from '@/lib/producto'
 import { PERFILES, RECETAS, type Perfil } from '@/lib/recetas'
 import { DE_CASA, POR_ID, type CasaId, type RolId } from '@/lib/roles'
 
-const BASES: RolId[] = ['pisco', 'gin', 'vodka', 'whisky', 'ron-blanco', 'ron-anejo', 'tequila']
+const BASES: RolId[] = ['pisco', 'gin', 'vodka', 'whisky', 'ron-blanco', 'ron-anejo', 'tequila', 'espumante']
 
 const INTENSIDADES: { valor: 1 | 2 | 3; nombre: string; detalle: string }[] = [
   { valor: 1, nombre: 'Suave', detalle: 'para la tarde' },
