@@ -22,6 +22,8 @@ export type Cliente = {
   nombre: string
   telefono: string
   notas: string
+  /** Opt-in voluntario, desmarcado por defecto: recordatorios de promos/recetas por WhatsApp o SMS. */
+  consent_messaging: boolean
 }
 
 export type Pedido = {

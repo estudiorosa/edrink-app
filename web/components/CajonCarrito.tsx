@@ -13,6 +13,7 @@ type Formulario = {
   telefono: string
   notas: string
   mayor: boolean
+  consentMessaging: boolean
 }
 
 const INICIAL: Formulario = {
@@ -20,6 +21,7 @@ const INICIAL: Formulario = {
   telefono: '',
   notas: '',
   mayor: false,
+  consentMessaging: false,
 }
 
 export function CajonCarrito() {
@@ -67,6 +69,7 @@ export function CajonCarrito() {
         nombre: form.nombre.trim(),
         telefono: form.telefono.trim(),
         notas: form.notas.trim(),
+        consent_messaging: form.consentMessaging,
       },
     })
     vaciar()
@@ -270,6 +273,18 @@ function FormularioEntrega({
         />
         <span className="text-sm leading-relaxed text-bruma">
           Confirmo que soy mayor de 18 años. El dependiente puede pedir carnet al entregar.
+        </span>
+      </label>
+
+      <label className="mt-4 flex cursor-pointer items-start gap-3">
+        <input
+          type="checkbox"
+          className="mt-1 accent-cyan"
+          checked={form.consentMessaging}
+          onChange={(e) => setForm({ ...form, consentMessaging: e.target.checked })}
+        />
+        <span className="text-sm leading-relaxed text-bruma">
+          Acepto recibir recordatorios de promos y recetas por WhatsApp o SMS.
         </span>
       </label>
 
