@@ -81,9 +81,9 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
     <>
       <section className="mx-auto max-w-6xl px-5 pt-12 pb-6 sm:pt-20">
         <h1 className="titular peso-h1 text-titan text-hueso">
-          Tú dices el gusto.
+          Tú pones las ganas.
           <br />
-          Yo pongo las botellas.
+          Nosotros el cóctel completo.
         </h1>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
