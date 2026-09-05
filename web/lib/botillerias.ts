@@ -30,3 +30,8 @@ export const POR_ID: Record<string, Botilleria> = Object.fromEntries(BOTILLERIAS
 export function urlMaps(b: Botilleria): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${b.direccion}, ${b.sector}, Antofagasta`)}`
 }
+
+/** Mapa embebido de Google Maps por dirección: no requiere API key. */
+export function urlMapaEmbed(b: Botilleria): string {
+  return `https://www.google.com/maps?q=${encodeURIComponent(`${b.direccion}, ${b.sector}, Antofagasta`)}&output=embed`
+}

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { ImagenProducto } from '@/components/ImagenProducto'
 import { Boton, Etiqueta } from '@/components/ui'
@@ -139,6 +140,20 @@ function Detalle({ pedido }: { pedido: Pedido }) {
             <p className="numero text-sm text-lima">{clp(item.precio * item.cantidad)}</p>
           </li>
         ))}
+        <li className="flex items-center gap-3 bg-lima/5 px-5 py-3">
+          <Image
+            src="/assets/badge-hielo-gratis.png"
+            alt="Sello: hielo gratis"
+            width={112}
+            height={112}
+            className="h-12 w-12 shrink-0 rounded-full"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm text-hueso">1x Bolsa de hielo 1 kg</p>
+            <p className="text-xs text-bruma">Sello confirmado: entregar sin cobro adicional</p>
+          </div>
+          <p className="numero text-sm text-lima">GRATIS</p>
+        </li>
       </ul>
       <div className="flex items-baseline justify-between border-t border-noche-borde px-5 py-4">
         <span className="rotulo text-base text-hueso">Total a pagar en el mesón</span>

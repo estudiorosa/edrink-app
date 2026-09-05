@@ -1,4 +1,4 @@
-import { BOTILLERIAS } from '@/lib/botillerias'
+import { BOTILLERIAS, urlMapaEmbed } from '@/lib/botillerias'
 
 const botilleria = BOTILLERIAS[0]
 
@@ -48,12 +48,22 @@ export function ComoFunciona() {
             </ol>
           </div>
 
-          <div className="border border-noche-borde bg-noche-alto/40 p-6">
+          <div className="self-start border border-noche-borde bg-noche-alto/40 p-6">
             <h3 className="rotulo text-lg text-hueso">La botillería que te recibe</h3>
             <p className="mt-2 text-sm text-bruma">
               Un solo local en Antofagasta. Llegas tú directamente al mesón: no hay reparto ni tiempos de espera
               de por medio.
             </p>
+            <div className="mt-5 aspect-video w-full overflow-hidden border border-noche-borde">
+              <iframe
+                src={urlMapaEmbed(botilleria)}
+                title={`Mapa de ${botilleria.nombre}`}
+                className="h-full w-full"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
             <div className="mt-5 border-t border-noche-borde pt-4">
               <p className="text-sm text-hueso">{botilleria.nombre}</p>
               <p className="mt-0.5 text-xs text-bruma">

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useMemo, useRef, useState } from 'react'
 import { Boton, Chip, Pregunta } from '@/components/ui'
 import { TarjetaSugerencia } from '@/components/TarjetaSugerencia'
@@ -61,12 +62,22 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
 
   return (
     <>
-      <section className="mx-auto max-w-6xl px-5 pt-12 pb-6 sm:pt-20">
-        <h1 className="titular peso-h1 text-titan text-hueso">
-          Tú pones las ganas.
-          <br />
-          Nosotros el cóctel completo.
-        </h1>
+      <section className="mx-auto max-w-6xl overflow-x-hidden px-5 pt-12 pb-6 sm:pt-20">
+        <div className="relative inline-block">
+          <h1 className="titular peso-h1 text-titan text-hueso">
+            Tú pones las ganas.
+            <br />
+            Nosotros el cóctel completo.
+          </h1>
+          <Image
+            src="/assets/badge-hielo-gratis.png"
+            alt="Sello: el hielo corre por nuestra cuenta"
+            width={220}
+            height={220}
+            priority
+            className="pointer-events-none absolute -top-[84px] -right-3 h-20 w-20 -rotate-6 select-none drop-shadow-lg"
+          />
+        </div>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
           <p className="max-w-[52ch] text-lg leading-relaxed text-bruma">
