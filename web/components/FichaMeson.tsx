@@ -57,19 +57,13 @@ export function FichaMeson({ id }: { id: string }) {
 
       <Bitacora pedido={pedido} />
 
-      <div className="mt-10 flex flex-wrap gap-3">
-        {pedido.estado === 'pendiente' ? (
+      {pedido.estado === 'pendiente' ? (
+        <div className="mt-10">
           <Boton variante="contorno" onClick={() => cancelarPedido(pedido.id)}>
             Cancelar la ficha
           </Boton>
-        ) : null}
-        <Link
-          href="/botilleria"
-          className="rotulo border border-lima px-5 py-2.5 text-base text-lima transition-colors hover:bg-lima hover:text-noche"
-        >
-          Abrir el panel de botillería
-        </Link>
-      </div>
+        </div>
+      ) : null}
     </main>
   )
 }
