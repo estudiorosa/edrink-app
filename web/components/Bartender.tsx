@@ -170,7 +170,7 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
               ))}
             </div>
             <p className="mt-4 text-sm text-bruma">
-              Lo que marques no se cobra: sale del pack y baja el total.
+              Paga solo lo que necesitas: marca lo que ya tienes.
             </p>
           </div>
         </div>
