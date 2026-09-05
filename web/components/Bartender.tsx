@@ -283,9 +283,9 @@ function Resultados({
       {alternativas.length ? (
         <div className="mt-14 border-t border-noche-borde pt-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h3 className="titular text-2xl text-hueso">Si abres la mano</h3>
+            <h3 className="titular text-2xl text-hueso">Tragos similares</h3>
             <p className="max-w-[46ch] text-sm text-bruma">
-              Estos no calzan con todo lo que pediste. Cada uno dice en qué se corre.
+              No cumplen con todos tus filtros, pero se acercan a lo que buscas.
             </p>
           </div>
           <div className="mt-8 space-y-10">
