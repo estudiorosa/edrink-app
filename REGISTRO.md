@@ -201,9 +201,14 @@ igual con una que con ocho. Se reescribió el texto de `ComoFunciona.tsx`, `Segu
 `CajonCarrito.tsx`, `Bartender.tsx` y las metadatas de `layout.tsx`, que asumían varias botillerías
 compitiendo por el pedido y la ciudad de Santiago.
 
-Pendiente: las coordenadas de Edmundo Pérez Zujovic 4764 y de los sectores de Antofagasta son una
-estimación (no hubo acceso a geocodificación en vivo durante el cambio); conviene confirmarlas
-contra el pin real en Google Maps antes de la próxima demo.
+Pendiente: las coordenadas de los sectores de Antofagasta (`SECTORES`) siguen siendo una
+estimación; conviene confirmarlas cuando haya tiempo.
+
+**2026-09-05, coordenadas reales del local.** El cliente confirmó el pin de Google Maps de Edrink
+Antofagasta. Se actualizó `lat`/`lng` en `lib/botillerias.ts` de la estimación inicial
+(`-23.6247, -70.3912`) al pin real (`-23.6268861, -70.3961212`) y se recalculó `distanciaKm`
+(la distancia de referencia desde La Chimba) de 0,8 a 1,0 km con la misma fórmula haversine que usa
+el resto del motor.
 
 **2026-09-05, rediseño con el manual de marca.** El cliente entregó el manual de marca de Edrink
 (`EDRINK_Manual_de_Marca_editable.pdf`, Estudio Rosa V.1 — 2026) y se aplicó de punta a punta.
