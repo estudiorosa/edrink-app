@@ -7,7 +7,7 @@ import { clp } from '@/lib/formato'
 
 export function Marca() {
   return (
-    <Link href="/" className="flex items-center">
+    <Link href="/" className="flex items-center gap-2">
       <Image
         src="/logo-edrink.svg"
         alt="Edrink — Click and brindis"
@@ -16,6 +16,7 @@ export function Marca() {
         priority
         className="h-8 w-auto sm:h-9"
       />
+      <span className="bajada text-base text-cyan">bartender</span>
     </Link>
   )
 }
