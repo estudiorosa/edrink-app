@@ -320,4 +320,4 @@ export const ROLES_DECLARABLES: RolId[] = [
   'cerveza',
 ]
 
-export const CASA_DECLARABLES: CasaId[] = ['hielo', 'limon', 'menta', 'azucar', 'naranja', 'jengibre']
+export const CASA_DECLARABLES: CasaId[] = ['limon', 'menta', 'azucar', 'naranja', 'jengibre']
