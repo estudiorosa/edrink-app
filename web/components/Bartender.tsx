@@ -6,7 +6,6 @@ import { TarjetaSugerencia } from '@/components/TarjetaSugerencia'
 import {
   CASA_DECLARABLES,
   PREFERENCIAS_INICIALES,
-  ROLES_DECLARABLES,
   contarPosibles,
   sugerir,
   type Preferencias,
@@ -37,10 +36,6 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
   const sinElegir =
     prefs.perfiles.length === 0 && prefs.bases.length === 0 && !prefs.intensidad && !prefs.sinAlcohol
   const basesConStock = useMemo(() => BASES.filter((b) => (opciones[b]?.length ?? 0) > 0), [opciones])
-  const rolesDeclarables = useMemo(
-    () => ROLES_DECLARABLES.filter((r) => (opciones[r]?.length ?? 0) > 0),
-    [opciones],
-  )
 
   function cambiar(parcial: Partial<Preferencias>) {
     setPrefs((p) => ({ ...p, ...parcial }))
@@ -171,15 +166,6 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
                   onClick={() => cambiar({ tengo: alternar<string>(prefs.tengo, c) })}
                 >
                   {DE_CASA[c as CasaId]}
-                </Chip>
-              ))}
-              {rolesDeclarables.map((r) => (
-                <Chip
-                  key={r}
-                  activo={prefs.tengo.includes(r)}
-                  onClick={() => cambiar({ tengo: alternar<string>(prefs.tengo, r) })}
-                >
-                  {POR_ID[r].nombre}
                 </Chip>
               ))}
             </div>

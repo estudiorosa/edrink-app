@@ -301,23 +301,6 @@ export function sugerir(prefs: Preferencias, opciones: OpcionesPorRol, cuantas =
   return { calzan, alternativas }
 }
 
-/** Roles que la persona puede declarar como "ya lo tengo". */
-export const ROLES_DECLARABLES: RolId[] = [
-  'pisco',
-  'gin',
-  'vodka',
-  'whisky',
-  'ron-blanco',
-  'ron-anejo',
-  'tequila',
-  'cola',
-  'tonica',
-  'lima-limon',
-  'energetica',
-  'jugo-naranja',
-  'jugo-pina',
-  'vino-tinto',
-  'cerveza',
-]
-
+/** Ingredientes de casa que la persona puede declarar como "ya lo tengo". No incluye nada que
+ * venda la botillería: eso siempre entra al pack. */
 export const CASA_DECLARABLES: CasaId[] = ['limon', 'menta', 'azucar', 'naranja', 'jengibre']
