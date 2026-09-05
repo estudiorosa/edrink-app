@@ -33,6 +33,7 @@ body {
   background-color: var(--color-noche);
   color: var(--color-hueso);
   font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -62,6 +63,16 @@ body {
   font-family: var(--font-sans);
   font-weight: 500;
   font-style: italic;
+}
+
+/* Jerarquía de encabezados en Montserrat: h1 Bold, h2 Semibold. Van después de .titular/.rotulo
+   para pisar su peso sin tocar el resto de sus usos (h3, números, etiquetas). */
+.peso-h1 {
+  font-weight: 700;
+}
+
+.peso-h2 {
+  font-weight: 600;
 }
 
 ::selection {

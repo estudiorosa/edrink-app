@@ -14,7 +14,7 @@ export function Vitrina({ estantes, extraidoEl }: { estantes: Estante[]; extraid
     <section id="bodega" className="border-t border-noche-borde bg-tinta/60 py-16">
       <div className="mx-auto max-w-6xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="titular text-grande text-hueso">Lo que hay hoy en la bodega</h2>
+          <h2 className="titular peso-h2 text-grande text-hueso">Lo que hay hoy en la bodega</h2>
           <p className="max-w-[42ch] text-sm text-bruma">
             Precios y stock tomados del catálogo de edrink.cl el {fecha}. El bartender solo recomienda lo que la
             botillería puede despachar.

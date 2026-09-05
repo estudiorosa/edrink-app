@@ -35,7 +35,7 @@ export function ComoFunciona() {
       <div className="mx-auto max-w-6xl px-5">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr]">
           <div>
-            <h2 className="titular text-grande text-hueso">De la pantalla al mesón, en 6 pasos</h2>
+            <h2 className="titular peso-h2 text-grande text-hueso">De la pantalla al mesón, en 6 pasos</h2>
             <p className="mt-4 max-w-[52ch] text-lg leading-relaxed text-bruma">
               Nada de reparto: arma tu combo con hielo de regalo incluido, camina hasta {botilleria.nombre} y
               muéstralo en caja. Tú llegas, el botillero ya sabe qué llevarte.

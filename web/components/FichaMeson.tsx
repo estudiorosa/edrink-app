@@ -77,7 +77,7 @@ const ESTADO_TEXTO: Record<EstadoPedido, string> = {
 function Aviso({ titulo, texto }: { titulo: string; texto: string }) {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-2xl flex-col justify-center px-5">
-      <h1 className="titular text-grande text-hueso">{titulo}</h1>
+      <h1 className="titular peso-h1 text-grande text-hueso">{titulo}</h1>
       <p className="mt-4 text-base leading-relaxed text-bruma">{texto}</p>
       <Link
         href="/"
@@ -109,7 +109,7 @@ function Titular({ pedido }: { pedido: Pedido }) {
 
   return (
     <div className="mt-6 border-b border-noche-borde pb-8">
-      <h1 className="titular text-grande text-hueso">{titulo}</h1>
+      <h1 className="titular peso-h1 text-grande text-hueso">{titulo}</h1>
       <p className="mt-3 max-w-[60ch] text-lg leading-relaxed text-bruma">{texto}</p>
     </div>
   )

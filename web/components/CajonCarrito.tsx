@@ -94,7 +94,7 @@ export function CajonCarrito() {
         className="relative flex h-full w-full max-w-md flex-col border-l border-noche-borde bg-noche"
       >
         <header className="flex items-center justify-between border-b border-noche-borde px-5 py-4">
-          <h2 className="rotulo text-xl text-hueso">
+          <h2 className="rotulo peso-h2 text-xl text-hueso">
             {paso === 'carro' ? 'Tu carro' : 'Tus datos para la ficha'}
           </h2>
           <button

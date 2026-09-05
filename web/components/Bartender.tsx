@@ -62,7 +62,7 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
   return (
     <>
       <section className="mx-auto max-w-6xl px-5 pt-12 pb-6 sm:pt-20">
-        <h1 className="titular text-titan text-hueso">
+        <h1 className="titular peso-h1 text-titan text-hueso">
           Tú dices el gusto.
           <br />
           Yo pongo las botellas.
@@ -252,7 +252,7 @@ function Resultados({
   return (
     <section className="mx-auto max-w-6xl px-5 py-14">
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-noche-borde pb-5">
-        <h2 className="titular text-grande text-hueso">
+        <h2 className="titular peso-h2 text-grande text-hueso">
           {calzan.length ? 'Lo que te recomiendo' : 'Con eso exacto no tengo nada'}
         </h2>
         <p className="max-w-[46ch] text-sm text-bruma">

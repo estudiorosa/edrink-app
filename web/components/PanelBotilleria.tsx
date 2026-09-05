@@ -28,7 +28,7 @@ export function PanelBotilleria() {
 
       <main className="mx-auto max-w-5xl px-5 py-8">
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-noche pb-4">
-          <h1 className="titular text-grande text-noche">Fichas por canjear</h1>
+          <h1 className="titular peso-h1 text-grande text-noche">Fichas por canjear</h1>
           <p className="text-sm text-noche/70">
             {botilleria.direccion}, {botilleria.sector}. Cierra a las {botilleria.cierra}.{' '}
             {botilleria.pedidosMes} pedidos el mes pasado.
@@ -36,7 +36,7 @@ export function PanelBotilleria() {
         </div>
 
         <section className="mt-8">
-          <h2 className="rotulo text-xl text-noche">
+          <h2 className="rotulo peso-h2 text-xl text-noche">
             Pendientes {porCanjear.length ? `(${porCanjear.length})` : ''}
           </h2>
           {porCanjear.length === 0 ? (
@@ -58,7 +58,7 @@ export function PanelBotilleria() {
 
         {cerradas.length ? (
           <section className="mt-12">
-            <h2 className="rotulo text-xl text-noche">Cerradas hoy</h2>
+            <h2 className="rotulo peso-h2 text-xl text-noche">Cerradas hoy</h2>
             <ul className="mt-4 divide-y divide-noche/20 border-y border-noche/20">
               {cerradas.map((p) => (
                 <li key={p.id} className="flex items-baseline justify-between gap-4 py-3 text-sm">
