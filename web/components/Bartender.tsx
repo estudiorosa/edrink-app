@@ -33,6 +33,14 @@ const INTENSIDADES: { valor: 1 | 2 | 3; nombre: string; detalle: string }[] = [
   { valor: 3, nombre: 'Cargado', detalle: 'se nota el trago' },
 ]
 
+const PASOS = [
+  { id: 'perfil', texto: '¿Cómo lo quieres?' },
+  { id: 'base', texto: '¿Con qué base?' },
+  { id: 'intensidad', texto: '¿Qué tan cargado?' },
+  { id: 'cantidad', texto: '¿Para cuántos?' },
+  { id: 'casa', texto: '¿Qué tienes ya en la casa?' },
+] as const
+
 function alternar<T>(lista: T[], valor: T): T[] {
   return lista.includes(valor) ? lista.filter((x) => x !== valor) : [...lista, valor]
 }
@@ -40,15 +48,25 @@ function alternar<T>(lista: T[], valor: T): T[] {
 export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorRol; totalProductos: number }) {
   const [prefs, setPrefs] = useState<Preferencias>(PREFERENCIAS_INICIALES)
   const [resultado, setResultado] = useState<Resultado | null>(null)
+  const [paso, setPaso] = useState(0)
   const resultadosRef = useRef<HTMLDivElement>(null)
+  const formularioRef = useRef<HTMLDivElement>(null)
 
   const posibles = useMemo(() => contarPosibles(prefs, opciones), [prefs, opciones])
   const sinElegir =
     prefs.perfiles.length === 0 && prefs.bases.length === 0 && !prefs.intensidad && !prefs.sinAlcohol
   const basesConStock = useMemo(() => BASES.filter((b) => (opciones[b]?.length ?? 0) > 0), [opciones])
+  const esUltimoPaso = paso === PASOS.length - 1
 
   function cambiar(parcial: Partial<Preferencias>) {
     setPrefs((p) => ({ ...p, ...parcial }))
+  }
+
+  function irAPaso(siguiente: number) {
+    setPaso(siguiente)
+    window.requestAnimationFrame(() => {
+      formularioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
   }
 
   function armar() {
@@ -97,100 +115,137 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
             ) : null}
           </div>
         </div>
-
-        <div className="mt-14 grid gap-9 border-t border-noche-borde pt-10 lg:grid-cols-2">
-          <Pregunta texto="¿Cómo lo quieres?">
-            {PERFILES.map((p) => (
-              <Chip
-                key={p.id}
-                activo={prefs.perfiles.includes(p.id)}
-                onClick={() => cambiar({ perfiles: alternar<Perfil>(prefs.perfiles, p.id) })}
-                detalle={p.descripcion}
-              >
-                {p.nombre}
-              </Chip>
-            ))}
-          </Pregunta>
-
-          <Pregunta texto="¿Con qué base?">
-            {basesConStock.map((b) => (
-              <Chip
-                key={b}
-                activo={prefs.bases.includes(b)}
-                onClick={() => cambiar({ bases: alternar<RolId>(prefs.bases, b), sinAlcohol: false })}
-              >
-                {POR_ID[b].nombre}
-              </Chip>
-            ))}
-            <Chip
-              activo={prefs.sinAlcohol}
-              onClick={() => cambiar({ sinAlcohol: !prefs.sinAlcohol, bases: [] })}
-            >
-              Sin alcohol
-            </Chip>
-          </Pregunta>
-
-          <Pregunta texto="¿Qué tan cargado?">
-            {INTENSIDADES.map((i) => (
-              <Chip
-                key={i.valor}
-                activo={prefs.intensidad === i.valor}
-                onClick={() => cambiar({ intensidad: prefs.intensidad === i.valor ? null : i.valor })}
-                detalle={i.detalle}
-              >
-                {i.nombre}
-              </Chip>
-            ))}
-          </Pregunta>
-
-          <div>
-            <p className="rotulo mb-3 text-lg text-hueso">¿Para cuántos?</p>
-            <div className="flex flex-wrap items-center gap-6">
-              <Contador
-                valor={prefs.personas}
-                min={1}
-                max={30}
-                etiqueta={prefs.personas === 1 ? 'persona' : 'personas'}
-                onCambio={(personas) => cambiar({ personas })}
-              />
-              <Contador
-                valor={prefs.tragosPorPersona}
-                min={1}
-                max={5}
-                etiqueta={prefs.tragosPorPersona === 1 ? 'trago cada uno' : 'tragos cada uno'}
-                onCambio={(tragosPorPersona) => cambiar({ tragosPorPersona })}
-              />
-            </div>
-            <p className="mt-4 text-sm text-bruma">
-              Con esto calculo cuántas botellas van al carro, no solo la receta para un vaso.
-            </p>
-          </div>
-
-          <div className="lg:col-span-2">
-            <p className="rotulo mb-3 text-lg text-hueso">¿Qué tienes ya en la casa?</p>
-            <div className="flex flex-wrap gap-2">
-              {CASA_DECLARABLES.map((c) => (
-                <Chip
-                  key={c}
-                  activo={prefs.tengo.includes(c)}
-                  onClick={() => cambiar({ tengo: alternar<string>(prefs.tengo, c) })}
-                >
-                  {DE_CASA[c as CasaId]}
-                </Chip>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-bruma">
-              Paga solo lo que necesitas: marca lo que ya tienes.
-            </p>
-          </div>
-        </div>
       </section>
 
-      <div className="py-10 text-center">
-        <Boton variante="lima" tamano="grande" onClick={armar}>
-          {posibles === 0 ? 'Ver lo más parecido' : 'Armar mi trago'}
-        </Boton>
-      </div>
+      <section ref={formularioRef} className="mx-auto max-w-6xl scroll-mt-20 px-5 pb-14">
+        <div className="flex items-center gap-3 border-t border-noche-borde pt-8">
+          <p className="rotulo shrink-0 text-sm text-bruma">
+            Paso {paso + 1} de {PASOS.length}
+          </p>
+          <div className="flex flex-1 gap-1.5">
+            {PASOS.map((p, i) => (
+              <div
+                key={p.id}
+                className={`h-1 flex-1 rounded-full transition-colors ${i <= paso ? 'bg-lima' : 'bg-noche-borde'}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8">
+          {paso === 0 ? (
+            <Pregunta texto={PASOS[0].texto}>
+              {PERFILES.map((p) => (
+                <Chip
+                  key={p.id}
+                  activo={prefs.perfiles.includes(p.id)}
+                  onClick={() => cambiar({ perfiles: alternar<Perfil>(prefs.perfiles, p.id) })}
+                  detalle={p.descripcion}
+                >
+                  {p.nombre}
+                </Chip>
+              ))}
+            </Pregunta>
+          ) : null}
+
+          {paso === 1 ? (
+            <Pregunta texto={PASOS[1].texto}>
+              {basesConStock.map((b) => (
+                <Chip
+                  key={b}
+                  activo={prefs.bases.includes(b)}
+                  onClick={() => cambiar({ bases: alternar<RolId>(prefs.bases, b), sinAlcohol: false })}
+                >
+                  {POR_ID[b].nombre}
+                </Chip>
+              ))}
+              <Chip
+                activo={prefs.sinAlcohol}
+                onClick={() => cambiar({ sinAlcohol: !prefs.sinAlcohol, bases: [] })}
+              >
+                Sin alcohol
+              </Chip>
+            </Pregunta>
+          ) : null}
+
+          {paso === 2 ? (
+            <Pregunta texto={PASOS[2].texto}>
+              {INTENSIDADES.map((i) => (
+                <Chip
+                  key={i.valor}
+                  activo={prefs.intensidad === i.valor}
+                  onClick={() => cambiar({ intensidad: prefs.intensidad === i.valor ? null : i.valor })}
+                  detalle={i.detalle}
+                >
+                  {i.nombre}
+                </Chip>
+              ))}
+            </Pregunta>
+          ) : null}
+
+          {paso === 3 ? (
+            <div>
+              <p className="rotulo mb-3 text-lg text-hueso">{PASOS[3].texto}</p>
+              <div className="flex flex-wrap items-center gap-6">
+                <Contador
+                  valor={prefs.personas}
+                  min={1}
+                  max={30}
+                  etiqueta={prefs.personas === 1 ? 'persona' : 'personas'}
+                  onCambio={(personas) => cambiar({ personas })}
+                />
+                <Contador
+                  valor={prefs.tragosPorPersona}
+                  min={1}
+                  max={5}
+                  etiqueta={prefs.tragosPorPersona === 1 ? 'trago cada uno' : 'tragos cada uno'}
+                  onCambio={(tragosPorPersona) => cambiar({ tragosPorPersona })}
+                />
+              </div>
+              <p className="mt-4 text-sm text-bruma">
+                Con esto calculo cuántas botellas van al carro, no solo la receta para un vaso.
+              </p>
+            </div>
+          ) : null}
+
+          {paso === 4 ? (
+            <div>
+              <p className="rotulo mb-3 text-lg text-hueso">{PASOS[4].texto}</p>
+              <div className="flex flex-wrap gap-2">
+                {CASA_DECLARABLES.map((c) => (
+                  <Chip
+                    key={c}
+                    activo={prefs.tengo.includes(c)}
+                    onClick={() => cambiar({ tengo: alternar<string>(prefs.tengo, c) })}
+                  >
+                    {DE_CASA[c as CasaId]}
+                  </Chip>
+                ))}
+              </div>
+              <p className="mt-4 text-sm text-bruma">Paga solo lo que necesitas: marca lo que ya tienes.</p>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="mt-10 flex items-center justify-between gap-4 border-t border-noche-borde pt-6">
+          {paso > 0 ? (
+            <Boton variante="contorno" tamano="grande" onClick={() => irAPaso(paso - 1)}>
+              Atrás
+            </Boton>
+          ) : (
+            <span />
+          )}
+          {esUltimoPaso ? (
+            <Boton variante="lima" tamano="grande" onClick={armar}>
+              {posibles === 0 ? 'Ver lo más parecido' : 'Armar mi trago'}
+            </Boton>
+          ) : (
+            <Boton variante="lima" tamano="grande" onClick={() => irAPaso(paso + 1)}>
+              Siguiente
+            </Boton>
+          )}
+        </div>
+      </section>
 
       <div ref={resultadosRef} className="scroll-mt-20">
         {resultado ? <Resultados resultado={resultado} prefs={prefs} opciones={opciones} /> : null}
