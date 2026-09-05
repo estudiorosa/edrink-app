@@ -4,30 +4,22 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ImagenProducto } from '@/components/ImagenProducto'
 import { Boton } from '@/components/ui'
-import { SECTORES } from '@/lib/botillerias'
 import { cambiarCantidad, cerrarCarro, quitar, useCarrito, vaciar } from '@/lib/carrito'
 import { clp } from '@/lib/formato'
-import { DESPACHO_GRATIS_DESDE } from '@/lib/motor'
 import { crearPedido } from '@/lib/pedidos'
 
 type Formulario = {
   nombre: string
   telefono: string
-  direccion: string
-  sector: string
   notas: string
   mayor: boolean
-  modo: 'auto' | 'manual'
 }
 
 const INICIAL: Formulario = {
   nombre: '',
   telefono: '',
-  direccion: '',
-  sector: SECTORES[0].nombre,
   notas: '',
   mayor: false,
-  modo: 'auto',
 }
 
 export function CajonCarrito() {
@@ -49,12 +41,12 @@ export function CajonCarrito() {
   if (!carrito.abierto) return null
 
   function enviar() {
-    if (!form.nombre.trim() || !form.direccion.trim()) {
-      setError('Falta tu nombre o la dirección de entrega.')
+    if (!form.nombre.trim()) {
+      setError('Falta tu nombre para dejarlo en la ficha.')
       return
     }
     if (form.telefono.replace(/\D/g, '').length < 8) {
-      setError('El teléfono queda corto. El repartidor lo necesita para ubicarte.')
+      setError('El teléfono queda corto. El local lo pide por si hay que avisarte algo.')
       return
     }
     if (!form.mayor) {
@@ -69,18 +61,13 @@ export function CajonCarrito() {
         cantidad: x.cantidad,
         imagen: x.producto.imagen,
       })),
-      subtotal: carrito.subtotal,
-      despacho: carrito.despacho,
       total: carrito.total,
       receta: carrito.receta,
       cliente: {
         nombre: form.nombre.trim(),
         telefono: form.telefono.trim(),
-        direccion: form.direccion.trim(),
-        sector: form.sector,
         notas: form.notas.trim(),
       },
-      modo: form.modo,
     })
     vaciar()
     cerrarCarro()
@@ -105,7 +92,7 @@ export function CajonCarrito() {
       >
         <header className="flex items-center justify-between border-b border-noche-borde px-5 py-4">
           <h2 className="rotulo text-xl text-hueso">
-            {paso === 'carro' ? 'Tu carro' : 'Dónde lo dejamos'}
+            {paso === 'carro' ? 'Tu carro' : 'Tus datos para la ficha'}
           </h2>
           <button
             type="button"
@@ -137,21 +124,8 @@ export function CajonCarrito() {
                 Pack armado para {carrito.receta.nombre.toLowerCase()}.
               </p>
             ) : null}
-            <div className="flex items-baseline justify-between text-sm text-bruma">
-              <span>Productos</span>
-              <span className="numero">{clp(carrito.subtotal)}</span>
-            </div>
-            <div className="mt-1 flex items-baseline justify-between text-sm text-bruma">
-              <span>Despacho</span>
-              <span className="numero">{carrito.despacho === 0 ? 'gratis' : clp(carrito.despacho)}</span>
-            </div>
-            {carrito.despacho > 0 ? (
-              <p className="mt-1 text-xs text-lima">
-                Suma {clp(DESPACHO_GRATIS_DESDE - carrito.subtotal)} más y el despacho sale gratis.
-              </p>
-            ) : null}
-            <div className="mt-3 flex items-baseline justify-between border-t border-noche-borde pt-3">
-              <span className="rotulo text-lg text-hueso">Total</span>
+            <div className="flex items-baseline justify-between border-t border-noche-borde pt-3">
+              <span className="rotulo text-lg text-hueso">Total a pagar en el mesón</span>
               <span className="numero text-2xl text-lima">{clp(carrito.total)}</span>
             </div>
 
@@ -175,7 +149,7 @@ export function CajonCarrito() {
                   Volver
                 </Boton>
                 <Boton variante="lima" className="flex-1" onClick={enviar}>
-                  Enviar el pedido a la red
+                  Generar mi ficha de mesón
                 </Boton>
               </div>
             )}
@@ -259,7 +233,7 @@ function FormularioEntrega({
           className={campo}
           value={form.nombre}
           onChange={(e) => setForm({ ...form, nombre: e.target.value })}
-          placeholder="Cómo te llama el repartidor"
+          placeholder="Cómo te llama el dependiente"
           autoComplete="name"
         />
       </label>
@@ -277,69 +251,15 @@ function FormularioEntrega({
       </label>
 
       <label className="mt-4 block text-sm text-bruma">
-        Dirección
-        <input
-          className={campo}
-          value={form.direccion}
-          onChange={(e) => setForm({ ...form, direccion: e.target.value })}
-          placeholder="Calle, número, departamento"
-          autoComplete="street-address"
-        />
-      </label>
-
-      <label className="mt-4 block text-sm text-bruma">
-        Sector
-        <select
-          className={campo}
-          value={form.sector}
-          onChange={(e) => setForm({ ...form, sector: e.target.value })}
-        >
-          {SECTORES.map((s) => (
-            <option key={s.nombre} value={s.nombre}>
-              {s.nombre}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="mt-4 block text-sm text-bruma">
-        Algo que deba saber el repartidor
+        Algo que deba saber el local
         <textarea
           className={campo}
           rows={2}
           value={form.notas}
           onChange={(e) => setForm({ ...form, notas: e.target.value })}
-          placeholder="Timbre malo, portón azul, dejar en conserjería"
+          placeholder="Paso como a las 21:00, voy con otra persona a retirar, etc."
         />
       </label>
-
-      <fieldset className="mt-6 border border-noche-borde p-4">
-        <legend className="px-2 text-sm text-bruma">Cómo responde la red en esta demo</legend>
-        {(
-          [
-            { valor: 'auto', titulo: 'Sola', detalle: 'La botillería contesta por su cuenta en segundos.' },
-            {
-              valor: 'manual',
-              titulo: 'La tomo yo',
-              detalle: 'El pedido espera hasta que alguien acepte desde el panel de botillería.',
-            },
-          ] as const
-        ).map((op) => (
-          <label key={op.valor} className="mt-2 flex cursor-pointer items-start gap-3 first:mt-0">
-            <input
-              type="radio"
-              name="modo"
-              className="mt-1 accent-cyan"
-              checked={form.modo === op.valor}
-              onChange={() => setForm({ ...form, modo: op.valor })}
-            />
-            <span>
-              <span className="block text-sm text-hueso">{op.titulo}</span>
-              <span className="block text-xs text-bruma">{op.detalle}</span>
-            </span>
-          </label>
-        ))}
-      </fieldset>
 
       <label className="mt-5 flex cursor-pointer items-start gap-3">
         <input
@@ -349,12 +269,13 @@ function FormularioEntrega({
           onChange={(e) => setForm({ ...form, mayor: e.target.checked })}
         />
         <span className="text-sm leading-relaxed text-bruma">
-          Confirmo que soy mayor de 18 años. El repartidor puede pedir carnet al entregar.
+          Confirmo que soy mayor de 18 años. El dependiente puede pedir carnet al entregar.
         </span>
       </label>
 
       <p className="mt-5 text-xs leading-relaxed text-bruma">
-        Esta es una demostración: no se cobra nada y no se envía ningún dato a Edrink.
+        Esta es una demostración: no se cobra nada y no se envía ningún dato a Edrink. El combo se paga en el
+        mesón al retirarlo.
       </p>
     </div>
   )

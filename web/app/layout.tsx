@@ -13,11 +13,11 @@ const marca = Montserrat({
 export const metadata: Metadata = {
   title: 'Bartender Edrink | Dime qué te gusta y te armo el trago',
   description:
-    'Elige un sabor o cuenta qué tienes en la casa y el bartender de Edrink arma la receta con el catálogo real de la botillería. El pedido lo despacha Edrink Antofagasta.',
+    'Elige un sabor o cuenta qué tienes en la casa y el bartender de Edrink arma la receta con el catálogo real de la botillería. Genera tu ficha y retírala en Edrink Antofagasta con hielo de regalo.',
   metadataBase: new URL('https://bartender.edrink.cl'),
   openGraph: {
     title: 'Bartender Edrink',
-    description: 'Recetas armadas con el catálogo real de Edrink y despacho desde Edrink Antofagasta.',
+    description: 'Recetas armadas con el catálogo real de Edrink. Genera tu ficha y retírala en Edrink Antofagasta.',
     locale: 'es_CL',
     type: 'website',
   },

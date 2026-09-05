@@ -50,8 +50,6 @@ export type Sugerencia = {
   costoPorTrago: number
 }
 
-export const DESPACHO_GRATIS_DESDE = 10000
-export const COSTO_DESPACHO = 2490
 const MAX_UNIDADES = 24
 
 function rolesDeCatalogo(receta: Receta): { rol: RolId; medida: string }[] {

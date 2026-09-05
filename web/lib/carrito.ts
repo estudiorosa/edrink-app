@@ -4,7 +4,7 @@
 // se persiste en localStorage y se lee con useSyncExternalStore. Así el servidor
 // renderiza un carro vacío sin desalinear la hidratación.
 import { useSyncExternalStore } from 'react'
-import { COSTO_DESPACHO, DESPACHO_GRATIS_DESDE, type LineaPack } from './motor'
+import { type LineaPack } from './motor'
 import type { ProductoLigero } from './producto'
 
 export type ItemCarrito = { producto: ProductoLigero; cantidad: number }
@@ -108,19 +108,16 @@ const snapshotServidor = () => VACIO
 export type Carrito = EstadoCarrito & {
   unidades: number
   subtotal: number
-  despacho: number
   total: number
 }
 
 export function useCarrito(): Carrito {
   const actual = useSyncExternalStore(suscribir, snapshot, snapshotServidor)
   const subtotal = actual.items.reduce((s, x) => s + x.producto.precio * x.cantidad, 0)
-  const despacho = subtotal === 0 || subtotal >= DESPACHO_GRATIS_DESDE ? 0 : COSTO_DESPACHO
   return {
     ...actual,
     unidades: actual.items.reduce((s, x) => s + x.cantidad, 0),
     subtotal,
-    despacho,
-    total: subtotal + despacho,
+    total: subtotal,
   }
 }

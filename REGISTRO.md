@@ -240,3 +240,59 @@ El wordmark del sitio es una aproximación tipográfica fiel al manual, no el is
 cliente entrega los archivos de marca (logo, favicon "E", textura de ladrillo), se pueden reemplazar
 directamente. Verificado con `npm run verificar` y en el navegador (landing, checkout, seguimiento
 del pedido y panel de botillería).
+
+**2026-09-05, pivote de despacho a domicilio a retiro en mesón con hielo gratis.** El cliente
+entregó un Customer Journey Map (`Estrategia 'Show & Pay' con Gancho de Hielo Gratis`) que describe
+un modelo distinto al que estaba construido: no hay reparto a domicilio, el cliente arma su combo en
+la web, genera una "ficha de mesón" y la muestra en caja en Edrink Antofagasta para retirarlo y
+pagarlo ahí mismo, con una bolsa de hielo de regalo como gancho de entrada. Se adaptó el sitio
+completo a ese modelo:
+
+- **Checkout** (`CajonCarrito.tsx`): se quitó el formulario de dirección/sector de entrega y el
+  selector de modo de respuesta de la red (ya no aplica: no hay despacho que aceptar). El formulario
+  quedó en nombre, teléfono, notas para el local y la confirmación de mayoría de edad. El botón pasó
+  de "Enviar el pedido a la red" a "Generar mi ficha de mesón".
+- **Costo de envío**: se eliminaron `DESPACHO_GRATIS_DESDE` y `COSTO_DESPACHO` de `lib/motor.ts`, y
+  el cálculo de despacho en `lib/carrito.ts` — el total del carro es directamente el subtotal, sin
+  cargo de envío. El mensaje "despacho gratis desde $10.000" en `TarjetaSugerencia.tsx` se reemplazó
+  por una nota de que el pack se retira en el mesón con el hielo de regalo incluido.
+- **Modelo de pedidos** (`lib/pedidos.ts`): se reemplazó por completo el motor de despacho (ofertas,
+  rondas de búsqueda, radio de cobertura, ETA, courier) por un modelo de tres estados: `pendiente`
+  (ficha generada, esperando que el cliente la muestre en el mesón), `canjeado` (el botillero la
+  marcó como entregada) y `cancelado`. El prefijo de los ID de pedido pasó de `AR-` a `FM-` (ficha de
+  mesón).
+- **`lib/botillerias.ts`**: se simplificó al mínimo (id, nombre, sector, dirección, estrellas,
+  pedidos del mes, hora de cierre). Se quitaron `lat`/`lng`, `distanciaKm`, `angulo`,
+  `minutosPreparacion`, `tasaAceptacion`, `RADIOS_KM`, `SECTORES` y las funciones de distancia
+  haversine, todas específicas del modelo de despacho. Se agregó `urlMaps()`, que arma un link de
+  búsqueda de Google Maps a partir de la dirección en texto, sin depender de coordenadas guardadas.
+- **Pantalla de seguimiento → Ficha de Mesón**: se eliminó `RadarDespacho.tsx` (el radar de
+  despacho ya no tiene sentido con un solo local y sin reparto) y se reemplazó
+  `SeguimientoPedido.tsx` por `FichaMeson.tsx`: una pantalla con el código de la ficha, el detalle
+  del pedido, el total a pagar en el mesón, la dirección del local con un botón directo a Google
+  Maps y un botón para cancelar. La textura de marca (degradé neón que antes vivía en el radar) se
+  movió a la tarjeta "muestra esta pantalla en el mesón de...", para no perder ese momento de
+  branding nocturno del manual.
+- **Panel de botillería** (`PanelBotilleria.tsx`): se quitó el selector de "botillería activa" (ya
+  no tiene objeto con un solo local) y la cola de ofertas con cuenta regresiva para aceptar/rechazar.
+  Ahora muestra una lista de "fichas por canjear" con un botón "Marcar como canjeada" por ficha, y un
+  historial de "cerradas hoy" (canjeadas o canceladas).
+- Se quitó `lib/reloj.ts` (`useAhora`), que solo servía para las cuentas regresivas del modelo de
+  despacho y quedó sin ningún uso.
+- Se actualizaron las metadatas de `app/layout.tsx` para hablar de "generar tu ficha y retirarla en
+  Edrink Antofagasta" en vez de "el pedido lo despacha Edrink Antofagasta".
+
+Verificado con `npm run verificar` (lint, tipos y build limpios) y de punta a punta en un navegador
+real con Playwright: armar un trago, agregar el pack al carro, completar el checkout sin que pida
+dirección ni cobre despacho, generar la ficha, abrir el panel de botillería en otra pestaña, marcar
+la ficha como canjeada y confirmar que la pantalla del cliente se actualiza sola (vía
+`BroadcastChannel`, sin recargar).
+
+Pendiente: el logo oficial de Edrink que el cliente quería subir a `/public` llegó vacío (una imagen
+en blanco) en dos intentos separados; el header sigue con el wordmark tipográfico ("EDRINK" +
+"bartender" en cursiva cian) hasta que se reciba el archivo real. El resto del catálogo/motor de
+recetas no cambió: el gancho de la bolsa de hielo gratis es, por ahora, solo un mensaje de copy en la
+tarjeta del pack — el hielo sigue modelado en `lib/roles.ts` como ingrediente de casa (no como línea
+de producto con precio $0 en el pack), así que no aparece como ítem propio en el carro ni en la
+ficha. Si se quiere que el hielo aparezca explícitamente como bonificación dentro del pack, es un
+cambio aparte en el motor de recetas.

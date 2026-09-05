@@ -75,28 +75,6 @@ body {
   border-radius: 2px;
 }
 
-/* El radar de despacho es el único movimiento que se inicia solo en la página. */
-@keyframes pulso-radar {
-  0% {
-    transform: scale(0.25);
-    opacity: 0.65;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-@keyframes latido {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-
 @keyframes entrada-carta {
   from {
     opacity: 0;
@@ -108,14 +86,6 @@ body {
   }
 }
 
-.pulso {
-  animation: pulso-radar 3.2s ease-out infinite;
-}
-
-.latido {
-  animation: latido 1.6s ease-in-out infinite;
-}
-
 .entrada {
   animation: entrada-carta 0.32s ease-out both;
 }
@@ -124,13 +94,8 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .pulso,
-  .latido,
   .entrada {
     animation: none;
-  }
-  .pulso {
-    opacity: 0.2;
   }
 }
 

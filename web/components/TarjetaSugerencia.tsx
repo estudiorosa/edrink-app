@@ -5,7 +5,7 @@ import { ImagenProducto } from '@/components/ImagenProducto'
 import { Boton, Etiqueta } from '@/components/ui'
 import { abrirCarro, agregarPack } from '@/lib/carrito'
 import { clp, volumen } from '@/lib/formato'
-import { DESPACHO_GRATIS_DESDE, type LineaPack, type Preferencias, type Sugerencia } from '@/lib/motor'
+import { type LineaPack, type Preferencias, type Sugerencia } from '@/lib/motor'
 import type { OpcionesPorRol, ProductoLigero } from '@/lib/producto'
 import { DE_CASA, POR_ID } from '@/lib/roles'
 
@@ -147,9 +147,7 @@ export function TarjetaSugerencia({
             <span className="numero text-3xl text-lima">{clp(total)}</span>
           </div>
           <p className="mt-2 text-sm text-bruma">
-            {total >= DESPACHO_GRATIS_DESDE
-              ? 'Despacho gratis: pasa los $10.000.'
-              : `Faltan ${clp(DESPACHO_GRATIS_DESDE - total)} para el despacho gratis.`}
+            Se retira en el mesón de Edrink Antofagasta. Con este pack te llevas la bolsa de hielo de regalo.
           </p>
 
           <Boton variante="lima" tamano="grande" onClick={agregar} className="mt-5 w-full">
