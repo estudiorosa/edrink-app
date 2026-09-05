@@ -10,11 +10,11 @@ export function Marca() {
     <Link href="/" className="flex items-center gap-2">
       <Image
         src="/logo-edrink.svg"
-        alt="Edrink — Click and brindis"
-        width={220}
-        height={82}
+        alt="Edrink"
+        width={632}
+        height={100}
         priority
-        className="h-8 w-auto sm:h-9"
+        className="h-9 w-auto sm:h-10"
       />
       <span className="bajada text-base text-cyan">bartender</span>
     </Link>
