@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { BOTILLERIAS, urlMapaEmbed } from '@/lib/botillerias'
 
 const botilleria = BOTILLERIAS[0]
@@ -23,8 +24,11 @@ const PASOS = [
 
 export function ComoFunciona() {
   return (
-    <section id="red" className="border-t border-noche-borde py-16">
-      <div className="mx-auto max-w-6xl px-5">
+    <section id="red" className="relative overflow-hidden border-t border-noche-borde py-16">
+      <Image src="/fondo.jpg" alt="" fill sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 bg-noche/70" />
+
+      <div className="relative mx-auto max-w-6xl px-5">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr]">
           <div>
             <h2 className="titular peso-h2 text-grande text-hueso">
