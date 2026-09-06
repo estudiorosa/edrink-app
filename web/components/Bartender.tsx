@@ -62,52 +62,60 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
 
   return (
     <>
-      <section className="mx-auto max-w-6xl overflow-x-hidden px-5 pt-12 pb-6 sm:pt-20">
-        <h1 className="titular peso-h1 text-titan text-hueso">
-          Tú pones las ganas.
-          <br />
-          Nosotros el cóctel completo.
-        </h1>
+      <section className="relative overflow-hidden">
+        <Image src="/fondo.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-noche/70" />
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
-          <p className="max-w-[52ch] text-lg leading-relaxed text-bruma">
-            Elige tu cóctel según la ocasión y armamos tu pack completo con stock real de Edrink Antofagasta.
-            Muéstralo en el mesón y llévate el hielo de regalo.
-          </p>
+        <div className="relative mx-auto max-w-6xl overflow-x-hidden px-5 pt-12 pb-6 sm:pt-20">
+          <h1 className="titular peso-h1 text-titan text-hueso">
+            Tú pones las ganas.
+            <br />
+            Nosotros el cóctel completo.
+          </h1>
 
-          <div className="relative">
-            <Image
-              src="/badge-hielo-gratis.png"
-              alt="Sello: el hielo corre por nuestra cuenta"
-              width={280}
-              height={280}
-              priority
-              className="pointer-events-none absolute -top-14 -right-2 z-10 h-28 w-28 select-none drop-shadow-lg sm:-top-16 sm:h-32 sm:w-32 lg:-top-[72px] lg:h-36 lg:w-36"
-            />
-            <div className="border border-noche-borde bg-noche-alto/60 p-6">
-              <p className="numero text-[4.5rem] leading-none text-lima">{posibles}</p>
-              <p className="mt-1 text-lg text-hueso">
-                {sinElegir
-                  ? posibles === 1
-                    ? 'trago posible con el stock de hoy'
-                    : 'tragos posibles con el stock de hoy'
-                  : posibles === 1
-                    ? 'trago calza con lo que elegiste'
-                    : 'tragos calzan con lo que elegiste'}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-bruma">
-                De {RECETAS.length} recetas cruzadas contra {totalProductos} productos del catálogo de Edrink, con
-                precio y stock de hoy.
-              </p>
-              {posibles === 0 ? (
-                <p className="mt-6 text-sm text-lima">
-                  Con esa combinación exacta no queda ninguna receta en pie. Quita un sabor o cambia la base, o
-                  mira lo más cercano que tengo.
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
+            <p className="max-w-[52ch] text-lg leading-relaxed text-bruma">
+              Elige tu cóctel según la ocasión y armamos tu pack completo con stock real de Edrink Antofagasta.
+              Muéstralo en el mesón y llévate el hielo de regalo.
+            </p>
+
+            <div className="relative">
+              <Image
+                src="/badge-hielo-gratis.png"
+                alt="Sello: el hielo corre por nuestra cuenta"
+                width={280}
+                height={280}
+                priority
+                className="pointer-events-none absolute -top-14 -right-2 z-10 h-28 w-28 select-none drop-shadow-lg sm:-top-16 sm:h-32 sm:w-32 lg:-top-[72px] lg:h-36 lg:w-36"
+              />
+              <div className="border border-noche-borde bg-noche-alto/60 p-6">
+                <p className="numero text-[4.5rem] leading-none text-lima">{posibles}</p>
+                <p className="mt-1 text-lg text-hueso">
+                  {sinElegir
+                    ? posibles === 1
+                      ? 'trago posible con el stock de hoy'
+                      : 'tragos posibles con el stock de hoy'
+                    : posibles === 1
+                      ? 'trago calza con lo que elegiste'
+                      : 'tragos calzan con lo que elegiste'}
                 </p>
-              ) : null}
+                <p className="mt-3 text-sm leading-relaxed text-bruma">
+                  De {RECETAS.length} recetas cruzadas contra {totalProductos} productos del catálogo de Edrink, con
+                  precio y stock de hoy.
+                </p>
+                {posibles === 0 ? (
+                  <p className="mt-6 text-sm text-lima">
+                    Con esa combinación exacta no queda ninguna receta en pie. Quita un sabor o cambia la base, o
+                    mira lo más cercano que tengo.
+                  </p>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl overflow-x-hidden px-5">
         <div className="mt-14 grid gap-9 border-t border-noche-borde pt-10 lg:grid-cols-2">
           <Pregunta texto="¿Cómo lo quieres?">
             {PERFILES.map((p) => (
@@ -194,7 +202,7 @@ export function Bartender({ opciones, totalProductos }: { opciones: OpcionesPorR
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="py-10 text-center">
         <Boton variante="lima" tamano="grande" onClick={armar}>
